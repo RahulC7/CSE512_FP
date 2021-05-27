@@ -49,7 +49,7 @@ function createWordCloud(width, height, source){
             .attr("viewBox", [0, 0, width, height])
             .attr("font-family", fontFamily)
             .attr("text-anchor", "middle");
-        alert('hellasd');
+        
         let data = createSource();
         //console.log(data); 
         const cloud1 = d3.layout.cloud()

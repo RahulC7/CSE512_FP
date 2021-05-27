@@ -32,41 +32,16 @@
     </small>
   </div>
   <div class="row" style="padding-top: 20px;">
-    <div class="col-4 conf-dropdown">
-      <h5>Venues</h5>
-      <select class="conf-select" style="width: 80%" name="conferences[]" multiple="multiple">
-      </select>
-    </div>
-    <div class="col-4 author-dropdown">
-      <h5>Authors</h5>
-      <select class="author-select" style="width: 80%" name="authors[]" multiple="multiple">
-      </select>
-    </div>
-    <div class="col-4">
-      <h5>Tracing the recently visited author nodes:</h5>
-      <div class="clicked-authors"></div>
-    </div>
-  </div>
-  <div class="row" style="padding-top: 20px;">
-    <div class="col-4 filters">
+    <div class="col-6 graph-container">
       <div class="card">
-        <div class="card-body">
-          <strong>Publication Year</strong>
-          <div class="pubYearFilter"></div>
-          <strong>Number of Publications</strong>
-          <div class="numPubFilter"></div>
-          <strong>Number of Collaborated Publications</strong>
-          <div class="numCollabFilter"></div>
-          <strong>Citation Count</strong>
-          <div class="citationCountFilter"></div>
+        <div class="network-graph"></div>
+      </div>
+    </div>
+    <div class="col-6 graph-container">
+        <div class="card">
+          <div class="wordcloud-graph"></div>
         </div>
       </div>
-    </div>
-    <div class="col-8 graph-container">
-      <div class="card">
-        <div class="wordcloud-graph"></div>
-      </div>
-    </div>
   </div>
   <div class="footer text-center">
     <a href="https://courses.cs.washington.edu/courses/cse512/21sp/">CSE 512 Data Visualization</a>
