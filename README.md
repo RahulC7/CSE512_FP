@@ -1,11 +1,6 @@
 
-# FP-Research-Onboarding
-Team members:  
-* Zhitao Yu  
-* Yuxuan Mei  
-* Rahul Chandra  
-* Dhruv Yadav
+# CSE512 Final Project
 
-Project page: https://cse512-21s.github.io/FP-Research-Onboarding/  
+Webpage: https://rahulc7.github.io/CSE512_FP/
 
 Modify or replace `index.html` in the `docs` folder to update your project page.
