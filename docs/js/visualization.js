@@ -1,5 +1,5 @@
-const a2pFilename = '../docs/data/dblp2010_a2p_jheer.json';
-const p2aFilename = '../docs/data/dblp2010_p2a_jheer.json';
+const a2pFilename = './data/dblp2010_a2p_jheer.json';
+const p2aFilename = './data/dblp2010_p2a_jheer.json';
 var a2pDt, p2aDt, coauthorDt;
 var confOptions, authorOptions;
 var selectedConfIds = new Set(), selectedAuthorIds = new Set();

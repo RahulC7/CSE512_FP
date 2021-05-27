@@ -1,8 +1,8 @@
 // define default parameters
 let searchParams = new URLSearchParams(window.location.search);
 let authorId = '53f59584dabfaee473f8045b';
-const a2pFilename = '../docs/data/dblp2010_a2p_jheer.json';
-const p2aFilename = '../docs/data/dblp2010_p2a_jheer.json';
+const a2pFilename = './data/dblp2010_a2p_jheer.json';
+const p2aFilename = './data/dblp2010_p2a_jheer.json';
 let author_to_paper, paper_to_author, author_name = 'Jeffrey Heer';
 
 
