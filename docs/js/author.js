@@ -1,5 +1,5 @@
 // define default parameters
-let cloud = require('cloud.js');
+
 
 
 
@@ -29,23 +29,30 @@ function createSource(){
             }
         }
     }
-    const obj = Object.fromEntries(keywords);
-    return obj
+    let n = [];  
+    keywords.forEach((val, key)=> {n.push({text: key , value: val  });} );
+    console.log(n)
+    
+    //const obj = Object.fromEntries(keywords);
+    return n
 }
 
 
 function createWordCloud(width, height, source){
+    
     rotate = () => 0;
     padding = 0;
     fontScale = 15;
     fontFamily = "sans-serif";
     
-        const svg = d3.create(source)
+        const svg = d3.select(source).append("svg")
             .attr("viewBox", [0, 0, width, height])
             .attr("font-family", fontFamily)
             .attr("text-anchor", "middle");
+        alert('hellasd');
         let data = createSource();
-        const cloud1 = cloud()
+        //console.log(data); 
+        const cloud1 = d3.layout.cloud()
             .size([width, height])
             .words(data.map(d => Object.create(d)))
             .padding(padding)
