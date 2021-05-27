@@ -1,0 +1,194 @@
+/* =========================BELOW IS RANGE SLIDER CSS========================== */
+
+rect.overlay {
+    stroke: black;
+}
+
+rect.selection {
+    stroke: none;
+    fill: steelblue;
+    fill-opacity: 0.6;
+}
+
+#labelleft, #labelright {
+    dominant-baseline: hanging;
+    font-size: 12px;
+}
+
+#labelleft {
+    text-anchor: end;
+}
+
+#labelright {
+    text-anchor: start;
+}
+
+/* =========================BELOW IS NETWORK GRAPH CSS========================== */
+
+circle {
+    cursor: pointer;
+    fill: #444;
+    stroke: #fff;
+    stroke-width: 0.7;
+    transition: 0.3s fill, 0.3s stroke;
+}
+
+circle.exit {
+    stroke-opacity: 0;
+}
+
+circle.clicked, circle.clicked:hover {
+    fill: #DFA934;
+}
+
+circle.clickedactive, circle.clickedactive:hover {
+    fill: #D8226B;
+}
+
+circle.neighbor {
+    fill: #20CB4C;
+}
+
+circle:hover {
+    stroke: #20CB4C;
+    fill: #444;
+}
+
+line {
+    stroke: #5151d3;
+    stroke-width: 0.5;
+    transition: 0.3s;
+}
+
+line.highlight {
+    stroke: #20CB4C;
+}
+
+line.exit {
+    stroke-opacity: 0;
+    stroke: #fff;
+}
+
+.tooltip {
+    font-family: Helvetica, sans-serif;
+    pointer-events: none;
+    position: absolute;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 3px white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transform: translate(5px, 2px);
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+.tooltip.clicked {
+    border-color: #DFA934;
+}
+
+.tooltip.clickedactive {
+    border-color: #D8226B;
+}
+
+.tooltip span {
+    display: block;
+}
+
+.tooltip span:first-child {
+    font-weight: bold;
+}
+
+button {
+	border: 0;
+	padding: 4px;
+	margin: 0;
+	background: #eaeaea;
+	cursor: pointer;
+	font: inherit;
+	border-radius: 5px;
+}
+
+.clicked-authors {
+	margin: -8px;
+	margin-top: 0;
+}
+
+.clicked-authors button {
+	margin: 8px;
+	border-bottom: 4px solid #DFA934;
+}
+
+.clicked-authors button.clickedactive {
+	margin: 8px;
+	border-bottom-color:rgba(255, 20, 20, 0.8);
+	cursor: auto;
+}
+
+.clicked-authors button span {
+	color: #fff;
+	border-radius: 50%;
+	background: rgba(50, 50, 50, 0.5);
+	padding: 0 4px;
+	margin-left: 3px;
+	cursor: pointer;
+	transition: 0.1s ease-out;
+}
+
+.clicked-authors button:hover span {
+	background: rgba(255, 20, 20, 0.8);
+}
+
+/* =========================BELOW IS BOILERPLATE FROM INITIAL COMMIT========================== */
+* { padding: 0; margin: 0; }
+body {
+    margin: 0 auto 0 auto;
+    padding: 0;
+    max-width: 1200px;
+    font-family: "Avenir", "Avenir Next", Helvetica Neue, Arial;
+    font-size: 0.95em;
+}
+a, a:visited { text-decoration: none; color: #7533f4; }
+a:hover { text-decoration: underline; color: #f4b014; }
+h1, h2, h3, h4, h5 {
+    color: #492a7c;
+    background-color: inherit;
+    font-weight: normal;
+    padding: 0 0 5px 0;
+    margin: 15px 0 0 0;
+    border: none;
+    clear: right;
+}
+h1 { font-size: 24pt; margin:  5px 0 10px 0; line-height: 28px; }
+h2 { font-size: 14pt; margin: 30px 0 15px 0; letter-spacing: 0.01em; border-bottom: 1px solid #ccc;  line-height: 20px;}
+h3 { font-size: 13pt; }
+h4 { font-size: 12pt; }
+h5 { font-size: 11pt; }
+p { margin: 0 0 10px 0; }
+.content {
+    margin: 0;
+    padding: 15px 20px;
+    background-color: #ffffff;
+}
+.title, .title h1, .title a {
+    color: #492a7c;
+    font-size: 24pt;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.footer {
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+    padding-top: 4px;
+    text-align: right;
+    font-size: 12px;
+}
+.footer a {
+    color: #21346B;
+}
+.footer a:hover {
+    color: #ce3333;
+}
