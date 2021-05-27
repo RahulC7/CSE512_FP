@@ -60,7 +60,7 @@ function createWordCloud(width, height, source){
         });
       
         cloud1.start();
-        invalidation.then(() => cloud1.stop()); // -------------- INVALIDATION NOT DEFINED --------------------
+        // invalidation.then(() => cloud1.stop()); // -------------- INVALIDATION NOT DEFINED --------------------
         return svg.node();
 }
 
@@ -82,27 +82,26 @@ function createBarChartData() {
     // }
     // data.sort((a, b) => (a.value < b.value) ? 1 : -1);
 
-    let data = [{name: "Yolo", value: 42}, {name: "Yolo2", value: 30}];
-
+    let data = [{name: "Dhruv Yadav", value: 42}, {name: "Rahul Chandra", value: 30}];
+    
     return data;
 }
 
 function createBarChart(width, height, source) {
     let fontFamily = "Lato";
+    let fontSize = 60;
+    let barHeight = 75;
 
 	const svg = d3.select(source)
 		.append("svg")
 		.attr("viewBox", [0, 0, width, height]);
-
+    
 	function update() { // TODO: add range slider support
-		console.log("Bar chart viz updated!", last_clicked);
-
 		let data = createBarChartData();
+        
         console.log(data);
 
-		// let data = [{name: "Dhruv", value: 10}, {name: "Dhruv2", value: 8}];
-		let barHeight = 25;
-		let margin = ({ top: 30, right: 20, bottom: 10, left: 540 });
+		let margin = ({ top: 80, right: 20, bottom: 10, left: 350 });
 		let height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
 
 		svg.attr("viewBox", [0, 0, width, height]);
@@ -131,7 +130,7 @@ function createBarChart(width, height, source) {
 			.attr("fill", "white")
 			.attr("text-anchor", "end")
 			.attr("font-family", fontFamily)
-			.attr("font-size", 12)
+			.attr("font-size", fontSize)
 			.selectAll("text")
 			.data(data)
 			.join("text")
@@ -147,17 +146,20 @@ function createBarChart(width, height, source) {
 
 		let xAxis = g => g
 			.attr("transform", `translate(0,${margin.top})`)
-			.call(d3.axisTop(x).ticks(width / 80, data.format))
-			.call(g => g.select(".domain").remove());
+			.call(d3.axisTop(x).ticks(width / 200, data.format))
+			.call(g => g.select(".domain").remove())
+
 		let yAxis = g => g
 			.attr("transform", `translate(${margin.left},0)`)
 			.call(d3.axisLeft(y).tickFormat(i => data[i].name).tickSizeOuter(0));
 
 		svg.append("g")
-			.call(xAxis);
+			.call(xAxis)
+            .style("font-size","35px");
 
 		svg.append("g")
-			.call(yAxis);
+			.call(yAxis)
+            .style("font-size","45px");
 
 	}
 
@@ -187,10 +189,9 @@ $(document).ready(function() {
             paper_to_author = p2a;
         }).then(() => { // load visualizations
             createWordCloud(600, 400, ".wordcloud-graph");
-
+            
             // bar chart
-            alert('yolo');
-            let chart2 = createBarChart(".collaborators-graph");
+            let chart2 = createBarChart(2000, 0, ".collaborators-graph");
             updateBarChart = () => { chart2.update(); };
             updateBarChart();
         });
