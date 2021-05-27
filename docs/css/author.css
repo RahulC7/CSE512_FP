@@ -1,11 +1,4 @@
-.axis {
-    font: 10px sans-serif;
-}
-  
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-    stroke-width: 10px;
+.tick > line {
+    stroke: black;
+    stroke-width: 5px;
 }

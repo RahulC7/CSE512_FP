@@ -145,13 +145,13 @@ function createBarChart(width, height, source) {
 				.attr("text-anchor", "start"));
 
 		let xAxis = g => g
-			.attr("transform", `translate(0,${margin.top})`)
-			.call(d3.axisTop(x).ticks(width / 200, data.format))
+			.attr("transform", `translate(0,${margin.top+8})`)
+			.call(d3.axisTop(x).ticks(width / 200, data.format).tickSize(25))
 			.call(g => g.select(".domain").remove())
 
 		let yAxis = g => g
 			.attr("transform", `translate(${margin.left},0)`)
-			.call(d3.axisLeft(y).tickFormat(i => data[i].name).tickSizeOuter(0));
+			.call(d3.axisLeft(y).tickFormat(i => data[i].name).tickSize(25).tickSizeOuter(0));
 
 		svg.append("g")
 			.call(xAxis)
