@@ -82,7 +82,7 @@ function createBarChartData() {
     // }
     // data.sort((a, b) => (a.value < b.value) ? 1 : -1);
 
-    let data = [{name: "Dhruv Yadav", value: 42}, {name: "Rahul Chandra", value: 30}];
+    let data = [{name: "Dhruv Yadav", value: 42, url: 'http://aops.com'}, {name: "Rahul Chandra", value: 30, url: 'http://google.com'}];
     
     return data;
 }
@@ -117,10 +117,12 @@ function createBarChart(width, height, source) {
 		let format = x.tickFormat(20, data.format);
 
 		svg.append("g")
-			.attr("fill", "steelblue")
-			.selectAll("rect")
-			.data(data)
-			.join("rect")
+            .selectAll("a")
+            .data(data)
+            .join("a")
+            .attr("xlink:href", d => d.url)
+			.append("rect")
+            .attr("fill", "steelblue")
 			.attr("x", x(0))
 			.attr("y", (d, i) => y(i))
 			.attr("width", d => x(d.value) - x(0))
