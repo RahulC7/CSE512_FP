@@ -110,7 +110,7 @@ $(document).ready(function() {
                 data: confOptions
             });
         }).then(() => {
-            let networkChart = createWordCloud(600, 400, ".network-graph");
+            let networkChart = createWordCloud(600, 400, ".wordcloud-graph");
             //updateNetwork = () => { networkChart.update(); }
             //updateNetwork();
         });
