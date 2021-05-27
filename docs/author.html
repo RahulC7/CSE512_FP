@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xml:lang="en" lang="en">
+<head>
+  <title>CSE512 | Final Project</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/arquero@4.7.1"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
+  <script src="js/barRangeSlider.js"></script>
+  <script src="js/rangeSlider.js"></script>
+  <script src="js/clickedAuthors.js"></script>
+  <script src="js/visualization.js"></script>
+</head>
+<body>
+<div class="container" style="padding-top: 20px;">
+  <div class="page-header" style="padding-bottom: 20px;">
+    <h1>Research Onboarding</h1>
+    <p>
+      <strong>Team Members</strong>: Zhitao Yu, Yuxuan Mei, Rahul Chandra, Dhruv Yadav
+    </p>
+    <small>
+      We provide a tool for users interested in finding collaborators in fields/topics they are interested in within Computer Science.
+      The tool visualizes an author network graph based on the publications data from DBLP since 2010 (inclusive). Dropdown menus for
+      venues and authors are provided, along with filters on publication year, citation count, number of papers published, and 
+      number of collaborations. If a specific author interests you, you can click on their name to go to their author page to see
+      more relevant information such as their contact information, most cited papers, and trends of their research topics. Happy exploring!
+    </small>
+  </div>
+  <div class="row" style="padding-top: 20px;">
+    <div class="col-4 conf-dropdown">
+      <h5>Venues</h5>
+      <select class="conf-select" style="width: 80%" name="conferences[]" multiple="multiple">
+      </select>
+    </div>
+    <div class="col-4 author-dropdown">
+      <h5>Authors</h5>
+      <select class="author-select" style="width: 80%" name="authors[]" multiple="multiple">
+      </select>
+    </div>
+    <div class="col-4">
+      <h5>Tracing the recently visited author nodes:</h5>
+      <div class="clicked-authors"></div>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 20px;">
+    <div class="col-4 filters">
+      <div class="card">
+        <div class="card-body">
+          <strong>Publication Year</strong>
+          <div class="pubYearFilter"></div>
+          <strong>Number of Publications</strong>
+          <div class="numPubFilter"></div>
+          <strong>Number of Collaborated Publications</strong>
+          <div class="numCollabFilter"></div>
+          <strong>Citation Count</strong>
+          <div class="citationCountFilter"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 graph-container">
+      <div class="card">
+        <div class="network-graph"></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer text-center">
+    <a href="https://courses.cs.washington.edu/courses/cse512/21sp/">CSE 512 Data Visualization</a>
+    <a href="http://www.washington.edu">University of Washington</a>
+  </div>
+</div>
+</body>
+</html>
