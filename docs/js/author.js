@@ -326,16 +326,16 @@ function createtimeSeries(width, height, source) {
 	function update() { // TODO: add range slider support
 		let data = createTimeSeriesData();
         console.log(data)
-        margin = ({top: 20, right: 20, bottom: 30, left: 30})
-        x = d3.scaleUtc()
-        .domain(d3.extent(data, d => d.date))
-        .range([margin.left, width - margin.right])
+        margin = ({top: 20, right: 20, bottom: 35, left: 35})
+       let x = d3.scaleLinear()
+		.domain([d3.min(data,d=>d.date), d3.max(data, d => d.date)])
+		.range([margin.left, width - margin.right]);
         y = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.value)]).nice()
         .range([height - margin.bottom, margin.top])
         xAxis = g => g
         .attr("transform", `translate(0,${height - margin.bottom})`)
-        .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0))
+        .call(d3.axisBottom(x).ticks(width / 400).tickSizeOuter(0))
 
         yAxis = g => g
         .attr("transform", `translate(${margin.left},0)`)
@@ -362,10 +362,10 @@ function createtimeSeries(width, height, source) {
             .attr("d", area);
 
         svg.append("g")
-            .call(xAxis);
+            .call(xAxis).style("font-size","20px");
 
         svg.append("g")
-            .call(yAxis);
+            .call(yAxis).style("font-size","20px");
 
 	}
 
