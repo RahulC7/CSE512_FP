@@ -69,6 +69,10 @@ function createWordCloud(width, height, source){
 let updateBarChart = () => { };
 
 function createBarChartData() {
+    let data = []
+    for(let paper of paper_to_author){
+        data.push({name: paper.title.slice(0,10), value: paper.n_citation, url: paper.url})
+    }
     // for (let paperId of author_to_papers[last_clicked]) {
     //     const p = paper_to_authors[paperId];
     //     if (true
@@ -80,11 +84,11 @@ function createBarChartData() {
     //         data.push({ name: p.title, value: p.numCitations });
     //     }
     // }
-    // data.sort((a, b) => (a.value < b.value) ? 1 : -1);
+    data.sort((a, b) => (a.value < b.value) ? 1 : -1);
 
-    let data = [{name: "Dhruv Yadav", value: 42, url: 'http://aops.com'}, {name: "Rahul Chandra", value: 30, url: 'http://google.com'}];
+    //let data = [{name: "Dhruv Yadav", value: 42, url: 'http://aops.com'}, {name: "Rahul Chandra", value: 30, url: 'http://google.com'}];
     
-    return data;
+    return data.slice(0,Math.min(data.length,10));
 }
 
 function createBarChart(width, height, source) {
