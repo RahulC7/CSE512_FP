@@ -137,7 +137,51 @@ function createTimeSeriesData() {
 function createArcSeriesData(){
     let prevdata = createCollaboratorData();
     let data = [];
-    data.forEach((val,key)=>{data.push(key);});
+    prevdata.forEach((val,key)=>{data.push(key);});
+    get_node_links_from = (
+  author_names
+) => {
+  let [papers, authors] = get_papers_from(
+    author_names,
+    [minYear, maxYear],
+    [minCitations, maxCitations]
+  );
+
+  let nodes = [];
+  for (let [key, val] of authors) {
+    nodes.push({
+      id: key,
+      // numPapers: val
+      numPapers: author_to_papers[key].length
+    });
+  }
+  let links = [];
+
+  for (let i = 0; i < nodes.length; i++) { // iterate over all authors
+    let papers_i = author_to_papers[nodes[i].id]; // list of papers for ith author
+    for (let j = i + 1; j < nodes.length; j++) { // iterate over the rest of authors
+      let papers_j = author_to_papers[nodes[j].id]; // again, paper list
+      let num_intersect = papers_i.filter(
+        (v) =>
+          paper_to_authors[v].year >= minYear &&
+          paper_to_authors[v].year <= maxYear &&
+          paper_to_authors[v].numCitations >= minCitations &&
+          paper_to_authors[v].numCitations <= maxCitations &&
+          papers_j.includes(v)
+      ).length;
+
+      if (num_intersect) {
+        links.push({
+          source: nodes[i].id,
+          target: nodes[j].id,
+          numPapers: num_intersect
+        });
+      }
+    }
+  }
+
+  return { nodes, links };
+}
     
 }
 
