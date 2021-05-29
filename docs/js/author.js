@@ -92,16 +92,6 @@ function createBarChartData() {
 }
 
 function createCollaboratorData() {
-    // let data = []
-    // for(let author of author_to_paper){
-    //     let papers = author.papers;
-    //     for(let paper in papers){
-
-    //     }
-    //     data.push({name: paper.title.slice(0,10), value: paper.n_citation, url: paper.url})
-    // }
-    // data.sort((a, b) => (a.value < b.value) ? 1 : -1);
-    // return data.slice(0,Math.min(data.length,10));
     let authors = new Map();
    
     for(let paper of paper_to_author){
@@ -127,9 +117,22 @@ function createCollaboratorData() {
 }
 
 
-
-
-
+function createTimeSeriesData() {
+    let years = new Map();
+    for(let paper of paper_to_author){
+        let y = paper.year;
+        if(years.has(y)){
+            years.set(y,years.get(y)+1);
+        }
+        else{
+            years.set(y,1);
+        }
+    }
+    let data = [];  
+    years.forEach((val, key)=> {data.push({date: key, value: val});});
+    data.sort((a, b) => (a.date < b.date) ? -1 : 1);
+    return  data;
+}
 
 function createBarChart2(width, height, source) {
     let fontFamily = "Lato";
@@ -311,6 +314,71 @@ function createBarChart(width, height, source) {
 
 
 
+function createtimeSeries(width, height, source) {
+    let fontFamily = "Lato";
+    let fontSize = 60;
+    let barHeight = 75;
+
+	const svg = d3.select(source)
+		.append("svg")
+		.attr("viewBox", [0, 0, width, height]);
+    
+	function update() { // TODO: add range slider support
+		let data = createTimeSeriesData();
+        console.log(data)
+        margin = ({top: 20, right: 20, bottom: 30, left: 30})
+        x = d3.scaleUtc()
+        .domain(d3.extent(data, d => d.date))
+        .range([margin.left, width - margin.right])
+        y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.value)]).nice()
+        .range([height - margin.bottom, margin.top])
+        xAxis = g => g
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0))
+
+        yAxis = g => g
+        .attr("transform", `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.select(".tick:last-of-type text").clone()
+        .attr("x", 3)
+        .attr("text-anchor", "start")
+        .attr("font-weight", "bold")
+        .text(data.y))
+        curve = d3.curveLinear
+        area = d3.area()
+        .curve(curve)
+        .x(d => x(d.date))
+        .y0(y(0))
+        .y1(d => y(d.value))
+
+        
+
+
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "steelblue")
+            .attr("d", area);
+
+        svg.append("g")
+            .call(xAxis);
+
+        svg.append("g")
+            .call(yAxis);
+
+	}
+
+	console.log(svg);
+	return Object.assign(svg.node(), { update });
+}
+
+
+
+
+
+
+
 
 
 // -------------- DOCUMENT READY --------------
@@ -339,7 +407,10 @@ $(document).ready(function() {
             let chart3 = createBarChart2(2000, 0, ".mostcited-graph");
             updateBarChart2 = () => { chart3.update(); };
             updateBarChart2();
-            
+
+            let chart4 = createtimeSeries(2000, 500, ".timeseries-graph");
+            updateBarChart3 = () => { chart4.update(); };
+            updateBarChart3();
         });
     });
 });
