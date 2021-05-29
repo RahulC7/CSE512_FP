@@ -134,6 +134,13 @@ function createTimeSeriesData() {
     return  data;
 }
 
+function createArcSeriesData(){
+    let prevdata = createCollaboratorData();
+    let data = [];
+    data.forEach((val,key)=>{data.push(key);});
+    
+}
+
 function createBarChart2(width, height, source) {
     let fontFamily = "Lato";
     let fontSize = 60;
@@ -456,30 +463,19 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/d
     nodes
       .on('mouseover', function(event,d){
         // Highlight the nodes: every node is green except of him
-        nodes.style('fill', "#B8B8B8")
-        d3.select(this).style('fill', '#69b3b2')
+        nodes.style('fill', "steelblue")
+        d3.select(this).style('fill', 'steelblue')
         // Highlight the connections
         links
-          .style('stroke', a=>  a.source === d.id || a.target === d.id ? '#69b3b2' : '#b8b8b8')
+          .style('stroke', a=>  a.source === d.id || a.target === d.id ? 'steelblue' : 'steelblue')
           .style('stroke-width', a=>a.source === d.id || a.target === d.id ? 4 : 1)
       })
       .on('mouseout', function(event,d){
-        nodes.style('fill', "#69b3a2")
+        nodes.style('fill', "steelblue")
         links
           .style('stroke', 'black')
           .style('stroke-width', '1')
       })
-
-
-    // text hover nodes
-    svg
-      .append("text")
-      .attr("text-anchor", "middle")
-      .style("fill", "#B8B8B8")
-      .style("font-size", "17px")
-      .attr("x", 50)
-      .attr("y", 10)
-      .html("Hover nodes")
 })
 }
 
