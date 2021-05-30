@@ -1,5 +1,3 @@
-
-
 function createTimeSeriesData() {
     let years = new Map();
     for(let paper of paper_to_author){
@@ -17,14 +15,7 @@ function createTimeSeriesData() {
     return  data;
 }
 
-
-
-
 function createtimeSeries(width, height, source) {
-    let fontFamily = "Lato";
-    let fontSize = 60;
-    let barHeight = 75;
-
 	const svg = d3.select(source)
 		.append("svg")
 		.attr("viewBox", [0, 0, width, height]);
@@ -32,35 +23,31 @@ function createtimeSeries(width, height, source) {
 	function update() { // TODO: add range slider support
 		let data = createTimeSeriesData();
         console.log(data)
-        margin = ({top: 20, right: 20, bottom: 35, left: 35})
-       let x = d3.scaleLinear()
-		.domain([d3.min(data,d=>d.date), d3.max(data, d => d.date)])
-		.range([margin.left, width - margin.right]);
-        y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.value)]).nice()
-        .range([height - margin.bottom, margin.top])
+        let margin = ({top: 50, right: 30, bottom: 50, left: 60})
+        let x = d3.scaleLinear()
+            .domain([d3.min(data,d=>d.date), d3.max(data, d => d.date)])
+            .range([margin.left, width - margin.right]);
+        let y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.value)]).nice()
+            .range([height - margin.bottom, margin.top]);
         xAxis = g => g
-        .attr("transform", `translate(0,${height - margin.bottom})`)
-        .call(d3.axisBottom(x).ticks(width / 400).tickSizeOuter(0))
-
+            .attr("transform", `translate(0,${height - margin.bottom})`)
+            .call(d3.axisBottom(x).ticks(width / 400).tickFormat(d3.format("d")).tickSizeOuter(0));
         yAxis = g => g
-        .attr("transform", `translate(${margin.left},0)`)
-        .call(d3.axisLeft(y))
-        .call(g => g.select(".domain").remove())
-        .call(g => g.select(".tick:last-of-type text").clone()
-        .attr("x", 3)
-        .attr("text-anchor", "start")
-        .attr("font-weight", "bold")
-        .text(data.y))
-        curve = d3.curveLinear
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(d3.axisLeft(y))
+            // .call(g => g.select(".domain").remove())
+            .call(g => g.select(".tick:last-of-type text").clone()
+            .attr("x", 3)
+            .attr("text-anchor", "start")
+            .attr("font-weight", "bold")
+            .text(data.y));
+        curve = d3.curveLinear;
         area = d3.area()
-        .curve(curve)
-        .x(d => x(d.date))
-        .y0(y(0))
-        .y1(d => y(d.value))
-
-        
-
+            .curve(curve)
+            .x(d => x(d.date))
+            .y0(y(0))
+            .y1(d => y(d.value));
 
         svg.append("path")
             .datum(data)
@@ -72,9 +59,7 @@ function createtimeSeries(width, height, source) {
 
         svg.append("g")
             .call(yAxis).style("font-size","20px");
-
 	}
-
-	console.log(svg);
+	// console.log(svg);
 	return Object.assign(svg.node(), { update });
 }
