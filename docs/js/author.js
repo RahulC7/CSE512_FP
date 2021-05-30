@@ -3,17 +3,15 @@ Data connection code is in ./dataloader/dataloader.js
 Also, all the visualizations are loaded from the ./visualizations/ folder
 */
 
+
 // -------------- DOCUMENT READY --------------
 
 function load_visualizations() {
     $(document).ready(function() {
-        // set author info
-        $('#author_name').html(author.name);
-        $('#author_email').html(author.email);
-        $('#author_org').html(author.org);
-
-        createWordCloud(600, 400, ".wordcloud-graph");        
-        createArcDiagram(".network-graph");
+        $('#author_name').html(author.name); // set author name
+        createWordCloud(600, 400, ".wordcloud-graph");
+                
+        createArcDiagram(".network-graph")
 
         // bar chart
         let chart2 = createBarChart(2000, 0, ".collaborators-graph", createBarChartData, true);

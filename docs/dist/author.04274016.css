@@ -1,0 +1,16 @@
+.tick > line {
+    stroke: black;
+    stroke-width: 5px;
+}
+
+rect {
+    opacity: 0.8;
+}
+
+rect:hover {
+    transition: all 0.15s ease-in;
+    opacity: 1;
+    cursor: pointer;
+}
+
+/*# sourceMappingURL=/author.04274016.css.map */
