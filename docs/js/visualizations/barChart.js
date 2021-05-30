@@ -55,7 +55,7 @@ function createCollaboratorData() {
 
 let updateBarChart = () => { };
 
-function createBarChart(width, height, source, data_generator) {
+function createBarChart(width, height, source, data_generator, paper) {
     let fontFamily = "Lato";
     let fontSize = 60;
     let barHeight = 75;
@@ -84,7 +84,21 @@ function createBarChart(width, height, source, data_generator) {
 			.padding(0.1);
 		let format = x.tickFormat(20, data.format);
 
-		svg.append("g")
+		if(paper){
+			svg.append("g")
+            .selectAll("a")
+            .data(data)
+            .join("a")
+            .attr("xlink:href", d => d.url)
+			.append("rect")
+            .attr("fill", "steelblue")
+			.attr("x", x(0))
+			.attr("y", (d, i) => y(i))
+			.attr("width", d => x(d.value) - x(0))
+			.attr("height", y.bandwidth());
+		}
+		else{
+			svg.append("g")
             .selectAll("a")
             .data(data)
             .join("a")
@@ -95,7 +109,7 @@ function createBarChart(width, height, source, data_generator) {
 			.attr("y", (d, i) => y(i))
 			.attr("width", d => x(d.value) - x(0))
 			.attr("height", y.bandwidth());
-
+		}
 		svg.append("g")
 			.attr("fill", "white")
 			.attr("text-anchor", "end")

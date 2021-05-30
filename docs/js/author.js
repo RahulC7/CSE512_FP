@@ -14,11 +14,11 @@ function load_visualizations() {
         createArcDiagram(".network-graph")
 
         // bar chart
-        let chart2 = createBarChart(2000, 0, ".collaborators-graph", createBarChartData);
+        let chart2 = createBarChart(2000, 0, ".collaborators-graph", createBarChartData, true);
         updateBarChart = () => { chart2.update(); };
         updateBarChart();
 
-        let chart3 = createBarChart(2000, 0, ".mostcited-graph", createCollaboratorData);
+        let chart3 = createBarChart(2000, 0, ".mostcited-graph", createCollaboratorData, false);
         updateBarChart2 = () => { chart3.update(); };
         updateBarChart2();
 
